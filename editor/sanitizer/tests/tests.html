@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sanitizer Tests</title>
+  <style>
+    body { font: 14px/1.4 monospace; padding: 1em; background: #111; color: #ddd; }
+    .test-row { white-space: pre-wrap; padding: 2px 6px; border-left: 3px solid #555; margin: 2px 0; }
+    .test-row.pass { color: #8c8; border-color: #4a4; }
+    .test-row.fail { color: #f88; border-color: #c33; background: #2a1212; }
+    .summary { font-weight: bold; padding: 8px; background: #222; margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+  <div id="results"></div>
+  <script type="module">
+    import { runAll } from "./test-runner.js";
+    await import("./allowlists.test.js");
+    await import("./css-cleaner.test.js");
+    await import("./html-sanitizer.test.js");
+    await import("./paste-modes.test.js");
+    runAll(document.getElementById("results"));
+  </script>
+</body>
+</html>

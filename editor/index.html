@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AO3 Work Skin Editor</title>
+  <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <header id="toolbar">
+    <button id="btn-cheatsheet" title="Show AO3 CSS/HTML cheat sheet">Cheat Sheet</button>
+    <button id="btn-refresh-allowlists" title="Re-fetch allowlists from otwarchive master">&#8635; Allowlists</button>
+    <button id="btn-reset-layout" title="Restore default panel arrangement and sizes">Reset Layout</button>
+    <span id="status"></span>
+    <span class="spacer"></span>
+  </header>
+
+  <main id="layout">
+    <div id="left-col">
+      <div id="slot-a" class="slot">
+        <section id="pane-html" class="pane">
+          <h2 class="drag-handle">HTML</h2>
+          <textarea id="ed-html"></textarea>
+        </section>
+      </div>
+      <div id="splitter-h" class="splitter splitter-h"></div>
+      <div id="slot-b" class="slot">
+        <section id="pane-css" class="pane">
+          <h2 class="drag-handle">CSS (Work Skin)</h2>
+          <textarea id="ed-css"></textarea>
+        </section>
+      </div>
+    </div>
+    <div id="splitter-v" class="splitter splitter-v"></div>
+    <div id="slot-c" class="slot">
+      <section id="pane-preview" class="pane">
+        <h2 class="drag-handle">Preview</h2>
+        <iframe id="preview-frame" sandbox="allow-same-origin"></iframe>
+      </section>
+    </div>
+  </main>
+
+  <section id="drawer">
+    <header id="drawer-header">
+      <button id="drawer-toggle">Sanitizer report (<span id="rej-count">0</span>)</button>
+    </header>
+    <div id="drawer-body"></div>
+  </section>
+
+  <div id="cheatsheet-modal" class="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <header>
+        <h2>AO3 Work Skin Cheat Sheet</h2>
+        <button id="cheatsheet-close" title="Close (Esc)">&times;</button>
+      </header>
+      <div class="cheatsheet-body"></div>
+    </div>
+  </div>
+
+  <script src="vendor/codemirror/codemirror.js"></script>
+  <script src="vendor/codemirror/xml.js"></script>
+  <script src="vendor/codemirror/javascript.js"></script>
+  <script src="vendor/codemirror/css.js"></script>
+  <script src="vendor/codemirror/htmlmixed.js"></script>
+
+  <script src="sanitizer/allowlists.js"></script>
+  <script src="sanitizer/css-cleaner.js"></script>
+  <script src="sanitizer/html-sanitizer.js"></script>
+  <script src="sanitizer/paste-modes.js"></script>
+  <script src="sanitizer/replacements.js"></script>
+  <script src="preview.js"></script>
+  <script src="warnings.js"></script>
+  <script src="cheatsheet.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>

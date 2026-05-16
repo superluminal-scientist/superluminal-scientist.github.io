@@ -1,0 +1,92 @@
+(function(AO3) {
+const { cleanHtml, cleanCss, applyWorkskinPrefix, enrichAll } = AO3;
+
+const AO3_BASE_CSS = `
+html { font-size: 100%; }
+body {
+  background: #f5f5ee;
+  color: #2a2a2a;
+  font: 100% Georgia, "Lucida Bright", Times, serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 1.5em;
+}
+
+#workskin {
+  max-width: 60em;
+  margin: 0 auto;
+}
+
+#workskin p {
+  margin: 0 0 1em 0;
+}
+
+#workskin a, #workskin a:link {
+  color: #900;
+  text-decoration: none;
+}
+#workskin a:visited { color: #600; }
+#workskin a:hover, #workskin a:focus {
+  color: #c00;
+  text-decoration: underline;
+}
+
+#workskin h1, #workskin h2, #workskin h3,
+#workskin h4, #workskin h5, #workskin h6 {
+  font-family: Garamond, "Hoefler Text", Palatino, "Palatino Linotype", serif;
+  font-weight: normal;
+  line-height: 1.2;
+  margin: 0.5em 0;
+}
+#workskin h1 { font-size: 1.5em; }
+#workskin h2 { font-size: 1.3em; }
+#workskin h3 { font-size: 1.15em; }
+
+#workskin blockquote {
+  margin: 0 0 1em 1.5em;
+  padding-left: 1em;
+  border-left: 2px solid #ccc;
+}
+
+#workskin pre, #workskin code, #workskin tt, #workskin kbd, #workskin samp {
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+#workskin hr {
+  border: none;
+  border-top: 1px solid #999;
+  margin: 1.5em 0;
+}
+
+#workskin ul, #workskin ol { margin: 0 0 1em 1.5em; }
+#workskin li { margin-bottom: 0.25em; }
+
+#workskin img { max-width: 100%; height: auto; }
+
+#workskin table { border-collapse: collapse; margin-bottom: 1em; }
+#workskin th, #workskin td { padding: 0.25em 0.5em; vertical-align: top; }
+`;
+
+function renderPreview({ html, css, iframe }) {
+  const { cleanedHtml, rejections: htmlRej } = cleanHtml(html);
+  const { cleanedCss,  rejections: cssRej  } = cleanCss(css);
+  const prefixedCss = applyWorkskinPrefix(cleanedCss);
+
+  const doc = `<!doctype html>
+<html><head><meta charset="utf-8">
+<style>${AO3_BASE_CSS}</style>
+<style>${prefixedCss}</style>
+</head><body><div id="workskin">${cleanedHtml}</div></body></html>`;
+
+  iframe.srcdoc = doc;
+
+  return {
+    htmlRejections: enrichAll(htmlRej),
+    cssRejections:  enrichAll(cssRej),
+  };
+}
+
+AO3.renderPreview = renderPreview;
+
+})(window.AO3);

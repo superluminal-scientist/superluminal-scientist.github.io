@@ -42,6 +42,44 @@ html, body { margin: 0; height: 100%; font-family: -apple-system, "Segoe UI", sa
 .pane .CodeMirror { flex: 1; height: auto; font-size: 13px; }
 #preview-frame { flex: 1; border: none; width: 100%; background: white; }
 
+.pane-tabs {
+  display: flex; gap: 0; margin: 0;
+  background: #2d2d30; border-bottom: 1px solid #333;
+}
+.pane-tab {
+  background: none; border: none; color: #888; font: inherit;
+  font-size: 0.85rem; padding: 0.35rem 0.85rem;
+  cursor: pointer; border-bottom: 2px solid transparent;
+}
+.pane-tab:hover { color: #ddd; }
+.pane-tab.active { color: #ddd; border-bottom-color: #0e639c; }
+
+.siteskin-panel {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+}
+.siteskin-toolbar {
+  display: flex; gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  background: #252526; border-bottom: 1px solid #333;
+}
+.siteskin-toolbar button {
+  background: #2d2d30; color: #ddd; border: 1px solid #444;
+  padding: 0.25rem 0.6rem;
+  font: inherit; font-size: 0.8rem;
+  cursor: pointer;
+}
+.siteskin-toolbar button:hover { background: #3a3a3d; }
+
+#ed-siteskin {
+  flex: 1; min-height: 0; width: 100%;
+  border: none; outline: none; resize: none;
+  background: #1e1e1e; color: #ddd;
+  font: 13px/1.4 "JetBrains Mono", "Consolas", monospace;
+  padding: 0.5rem 0.75rem;
+}
+[data-tab-panel][hidden] { display: none; }
+
 #drawer { background: #252526; border-top: 1px solid #333; max-height: 30vh; overflow: hidden; display: flex; flex-direction: column; }
 #drawer.collapsed #drawer-body { display: none; }
 #drawer-header button { background: none; border: none; color: #ddd; padding: 0.5rem 0.75rem; cursor: pointer; width: 100%; text-align: left; }

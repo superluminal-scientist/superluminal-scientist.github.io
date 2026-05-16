@@ -15,9 +15,16 @@ cmHtml.setValue(`<p>Hello AO3.</p>\n<p class="greeting">Try changing the CSS &ra
 cmCss.setValue(`.greeting { color: #c33; }`);
 
 const iframe = document.getElementById("preview-frame");
+const siteSkinEd = document.getElementById("ed-siteskin");
 const rejCount = document.getElementById("rej-count");
 const drawerBody = document.getElementById("drawer-body");
 const status = document.getElementById("status");
+
+const SITESKIN_KEY = "ao3-editor-siteskin";
+try {
+  const saved = localStorage.getItem(SITESKIN_KEY);
+  siteSkinEd.value = saved !== null ? saved : (window.AO3_DEFAULT_SITESKIN || "");
+} catch {}
 
 const state = { htmlRejections: [], cssRejections: [] };
 
@@ -31,6 +38,7 @@ function doRender() {
   const result = renderPreview({
     html: cmHtml.getValue(),
     css:  cmCss.getValue(),
+    siteSkinCss: siteSkinEd.value,
     iframe,
   });
   state.htmlRejections = result.htmlRejections;
@@ -73,6 +81,28 @@ function escapeHtml(s) {
 
 cmHtml.on("change", scheduleRender);
 cmCss.on("change",  scheduleRender);
+
+siteSkinEd.addEventListener("input", () => {
+  try { localStorage.setItem(SITESKIN_KEY, siteSkinEd.value); } catch {}
+  scheduleRender();
+});
+
+document.getElementById("btn-siteskin-reset").addEventListener("click", () => {
+  const text = window.AO3_DEFAULT_SITESKIN || "";
+  siteSkinEd.value = text;
+  try { localStorage.setItem(SITESKIN_KEY, text); } catch {}
+  scheduleRender();
+});
+
+const previewTabs = document.querySelectorAll("#pane-preview .pane-tab");
+const previewPanels = document.querySelectorAll("#pane-preview [data-tab-panel]");
+for (const tab of previewTabs) {
+  tab.addEventListener("click", () => {
+    const target = tab.dataset.tab;
+    for (const t of previewTabs) t.classList.toggle("active", t === tab);
+    for (const p of previewPanels) p.hidden = p.dataset.tabPanel !== target;
+  });
+}
 
 document.getElementById("drawer-toggle").addEventListener("click", () => {
   document.getElementById("drawer").classList.toggle("collapsed");

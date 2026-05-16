@@ -34,8 +34,17 @@
     <div id="splitter-v" class="splitter splitter-v"></div>
     <div id="slot-c" class="slot">
       <section id="pane-preview" class="pane">
-        <h2 class="drag-handle">Preview</h2>
-        <iframe id="preview-frame" sandbox="allow-same-origin"></iframe>
+        <div class="pane-tabs drag-handle">
+          <button type="button" class="pane-tab active" data-tab="preview" draggable="false">Preview</button>
+          <button type="button" class="pane-tab" data-tab="siteskin" draggable="false">Site Skin</button>
+        </div>
+        <iframe id="preview-frame" sandbox="allow-same-origin" data-tab-panel="preview"></iframe>
+        <div class="siteskin-panel" data-tab-panel="siteskin" hidden>
+          <div class="siteskin-toolbar">
+            <button type="button" id="btn-siteskin-reset" draggable="false" title="Replace textarea contents with the bundled AO3 default site skin">Reset to AO3 default</button>
+          </div>
+          <textarea id="ed-siteskin" spellcheck="false" placeholder="Paste a site skin's CSS here. Applied globally to the preview (not scoped to #workskin)."></textarea>
+        </div>
       </section>
     </div>
   </main>
@@ -64,6 +73,7 @@
   <script src="vendor/codemirror/css.js"></script>
   <script src="vendor/codemirror/htmlmixed.js"></script>
 
+  <script src="vendor/ao3-base.js"></script>
   <script src="sanitizer/allowlists.js"></script>
   <script src="sanitizer/css-cleaner.js"></script>
   <script src="sanitizer/html-sanitizer.js"></script>

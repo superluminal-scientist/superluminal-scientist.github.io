@@ -1,0 +1,23 @@
+{
+  "id": "crumble",
+  "title": "Text Crumble",
+  "blurb": "Crumbling text, best used for emotion. Surround words in [] for basic crumble and {} for blurred crumble.",
+  "fields": [
+    { "name": "font", "type": "select", "label": "Font (AO3-compatible)", "default": "Georgia, 'Times New Roman', serif",
+      "options": [
+        { "label": "Georgia (serif)",        "value": "Georgia, 'Times New Roman', serif" },
+        { "label": "Times New Roman (serif)","value": "'Times New Roman', Times, serif" },
+        { "label": "Palatino (serif)",       "value": "'Palatino Linotype', Palatino, 'Book Antiqua', serif" },
+        { "label": "Arial (sans-serif)",     "value": "Arial, Helvetica, sans-serif" },
+        { "label": "Verdana (sans-serif)",   "value": "Verdana, Geneva, sans-serif" },
+        { "label": "Tahoma (sans-serif)",    "value": "Tahoma, Geneva, sans-serif" },
+        { "label": "Trebuchet MS (sans)",    "value": "'Trebuchet MS', 'Lucida Grande', sans-serif" },
+        { "label": "Courier New (mono)",     "value": "'Courier New', Courier, monospace" },
+        { "label": "Lucida Console (mono)",  "value": "'Lucida Console', Monaco, monospace" },
+        { "label": "Comic Sans MS",          "value": "'Comic Sans MS', cursive" }
+      ]
+    },
+    { "name": "body", "type": "textarea", "label": "Prose ([brackets] crumble, {braces} crumble + blur)", "default": "Lorem ipsum [dolor sit] amet, consectetur {adipiscing elit}. Sed do [eiusmod] tempor incididunt ut {labore et dolore} magna aliqua." },
+    { "name": "intensity", "type": "range", "label": "Crumble amount", "min": 0, "max": 2.5, "step": 0.1, "default": 1 }
+  ]
+}

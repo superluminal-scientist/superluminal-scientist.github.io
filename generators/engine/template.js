@@ -62,6 +62,21 @@ function renderWith(tpl, data, escape) {
     if (isNaN(v)) return "";
     return String(Math.round(v * Number(factor)));
   });
+  out = out.replace(/\{\{=([^{}]+?)(?::(\d+))?\}\}/g, (_, expr, precision) => {
+    let s = expr;
+    s = s.replace(/[A-Za-z_$][\w$]*/g, (id) => {
+      const v = data?.[id];
+      const n = Number(v);
+      return isNaN(n) ? "0" : String(n);
+    });
+    if (!/^[\d.+\-*/() \t]+$/.test(s)) return "";
+    let result;
+    try { result = Function(`"use strict";return (${s});`)(); }
+    catch { return ""; }
+    if (typeof result !== "number" || !isFinite(result)) return "";
+    const digits = precision === undefined ? 4 : Number(precision);
+    return Number(result.toFixed(digits)).toString();
+  });
   out = out.replace(/\{\{\s*([\w$]+)\s*\}\}/g, (_, name) => {
     const v = data?.[name];
     if (v === undefined || v === null) return "";

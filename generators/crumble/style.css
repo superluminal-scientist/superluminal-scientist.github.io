@@ -8,13 +8,13 @@
   transform-origin: center center;
 }
 
-#workskin .crumble-{{intensity * 10}} var:nth-child(2n)    { font-size: calc(1em + 0.08em * {{intensity}}); transform: translateY(calc(-0.08em * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(3n)    { font-size: calc(1em - 0.1em * {{intensity}});  transform: translateY(calc(0.1em * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(3n+1)  { transform: translateX(calc(-0.06em * {{intensity}})) rotate(calc(-3deg * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(5n)    { font-size: calc(1em + 0.16em * {{intensity}}); transform: translateX(calc(0.08em * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(5n+2)  { font-size: calc(1em - 0.2em * {{intensity}});  transform: translateY(calc(-0.12em * {{intensity}})) rotate(calc(3deg * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(7n+3)  { transform: translateY(calc(0.14em * {{intensity}})) rotate(calc(-1.5deg * {{intensity}})); }
-#workskin .crumble-{{intensity * 10}} var:nth-child(11n+5) { font-size: calc(1em - 0.28em * {{intensity}}); transform: translateX(calc(-0.1em * {{intensity}})); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(2n)    { font-size: {{=1 + 0.08 * intensity}}em; transform: translateY({{=-0.08 * intensity}}em); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(3n)    { font-size: {{=1 - 0.1 * intensity}}em;  transform: translateY({{=0.1 * intensity}}em); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(3n+1)  { transform: translateX({{=-0.06 * intensity}}em) rotate({{=-3 * intensity}}deg); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(5n)    { font-size: {{=1 + 0.16 * intensity}}em; transform: translateX({{=0.08 * intensity}}em); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(5n+2)  { font-size: {{=1 - 0.2 * intensity}}em;  transform: translateY({{=-0.12 * intensity}}em) rotate({{=3 * intensity}}deg); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(7n+3)  { transform: translateY({{=0.14 * intensity}}em) rotate({{=-1.5 * intensity}}deg); }
+#workskin .crumble-{{intensity * 10}} var:nth-child(11n+5) { font-size: {{=1 - 0.28 * intensity}}em; transform: translateX({{=-0.1 * intensity}}em); }
 
 #workskin .crumble-blur {
   display: inline;
